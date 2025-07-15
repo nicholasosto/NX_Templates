@@ -3,3 +3,6 @@
 .nx/cache
 .nx/workspace-data
 node_modules
+out
+include
+

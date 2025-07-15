@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@nx/js": "^21.2.3",
 		"@rbxts/compiler-types": "3.0.0-types.0",
+		"@rbxts/fusion": "^0.2.0",
 		"@rbxts/services": "^1.5.5",
 		"@rbxts/types": "^1.0.862",
 		"concurrently": "^9.2.0",
