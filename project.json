@@ -1,0 +1,9 @@
+{
+  "targets": {
+    "build:rbx": {
+      "executor": "nx:run-commands",
+      "options": { "command": "rbxtsc --noNpmInstall" },
+      "outputs": ["{projectRoot}/out"]
+    }
+  }
+}
