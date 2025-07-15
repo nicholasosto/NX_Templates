@@ -33,31 +33,35 @@ This is a **roblox-ts + Nx** project that compiles TypeScript to Luau for Roblox
 - `src/shared/` → Shared utilities accessible by both client and server
 - **Never put code directly in `include/`** - it's auto-generated
 
+### State Management Pattern (Fusion-based)
+This project uses `@rbxts/fusion` for reactive state management:
+```typescript
+import { Value } from "@rbxts/fusion";
+
+const GameState = {
+    DataLoaded: Value(false),
+    PlayerDataLoaded: Value(false),
+};
+```
+- State files are in `src/client/states/` and follow the `*State.ts` naming pattern
+- Use Fusion's `Value()` for reactive state containers
+
+### Module Organization Patterns
+- **Barrel exports**: Each major directory has an `index.ts` that re-exports all modules
+- **Layer documentation**: Files include JSDoc headers with `@layer` (Client/Server/Shared)
+- **Theme system**: Centralized in `src/theme/` with enum-based theme keys (`ThemeKey.CyberGothic`, etc.)
+
 ### Rojo Configuration Pattern
 The `default.project.json` **must** include:
 1. `rbxts_include` path pointing to `include/`
 2. `node_modules/@rbxts` mapping for runtime libraries
 3. ReplicatedStorage as the container (required for shared runtime)
 
-Example structure:
-```json
-{
-  "tree": {
-    "ReplicatedStorage": {
-      "rbxts_include": { "$path": "include" },
-      "node_modules": {
-        "@rbxts": { "$path": "node_modules/@rbxts" }
-      }
-    }
-  }
-}
-```
-
 ### TypeScript Configuration Requirements
 - `"noLib": true` (roblox-ts requirement)
 - `"moduleDetection": "force"` (required for compilation)
 - `"typeRoots": ["node_modules/@rbxts"]` (for Roblox types)
-- `"baseUrl": "src"` (enables clean imports)
+- `"baseUrl": "src"` (enables clean imports without relative paths)
 
 ## Common Integration Points
 
@@ -92,7 +96,8 @@ export const GAME_CONFIG = {
 import { Players } from "@rbxts/services";  // ← Always @rbxts/ prefix
 ```
 
-### Project Structure Commands:
+### Nx Task Commands:
 - Use `nx` commands with `.\` prefix on Windows: `.\nx build`
 - Package manager is `pnpm` (see package.json)
 - Clean command uses Windows syntax: `rmdir /s /q include`
+- Available targets: `build`, `build:watch`, `clean`, `type-check`, `rojo:serve`, `rojo:build`
