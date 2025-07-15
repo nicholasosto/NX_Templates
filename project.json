@@ -1,9 +1,48 @@
 {
   "targets": {
-    "build:rbx": {
+    "build": {
       "executor": "nx:run-commands",
-      "options": { "command": "rbxtsc --noNpmInstall" },
-      "outputs": ["{projectRoot}/out"]
+      "options": { 
+        "command": "rbxtsc",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/include"]
+    },
+    "build:watch": {
+      "executor": "nx:run-commands",
+      "options": { 
+        "command": "rbxtsc --watch",
+        "cwd": "."
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": { 
+        "command": "rmdir /s /q include",
+        "cwd": "."
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": { 
+        "command": "tsc --noEmit",
+        "cwd": "."
+      }
+    },
+    "rojo:serve": {
+      "executor": "nx:run-commands",
+      "options": { 
+        "command": "rojo serve",
+        "cwd": "."
+      }
+    },
+    "rojo:build": {
+      "executor": "nx:run-commands",
+      "options": { 
+        "command": "rojo build -o game.rbxl",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/game.rbxl"]
     }
   }
 }

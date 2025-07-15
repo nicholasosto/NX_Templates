@@ -1,6 +1,22 @@
 {
+	"name": "roblox-ts-nx-project",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "nx build",
+		"build:watch": "nx build:watch",
+		"clean": "nx clean",
+		"type-check": "nx type-check",
+		"rojo:serve": "nx rojo:serve",
+		"rojo:build": "nx rojo:build",
+		"dev": "concurrently \"nx build:watch\" \"nx rojo:serve\""
+	},
 	"devDependencies": {
+		"@nx/js": "^21.2.3",
+		"@rbxts/compiler-types": "3.0.0-types.0",
+		"@rbxts/services": "^1.5.5",
+		"@rbxts/types": "^1.0.862",
+		"concurrently": "^9.2.0",
 		"nx": "^21.2.3",
-		"@nx/js": "^21.2.3"
+		"roblox-ts": "^3.0.0"
 	}
 }

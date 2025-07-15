@@ -1,0 +1,25 @@
+name = "roblox-ts-project"
+gameId = 0
+placeId = 0
+servePlaceIds = []
+
+[tree]
+"$className" = "DataModel"
+
+[tree.ReplicatedStorage]
+"$className" = "ReplicatedStorage"
+
+[tree.ReplicatedStorage.Shared]
+"$path" = "out/shared"
+
+[tree.ServerScriptService]
+"$className" = "ServerScriptService"
+
+[tree.ServerScriptService.Server]
+"$path" = "out/server"
+
+[tree.StarterPlayerScripts]
+"$className" = "StarterPlayer.StarterPlayerScripts"
+
+[tree.StarterPlayerScripts.Client]
+"$path" = "out/client"
